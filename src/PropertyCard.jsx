@@ -1,10 +1,20 @@
 import { FaBookmark } from 'react-icons/fa';
 
 function PropertyCard({ property }) {
+
+    const render_image = () => {
+        if(property.photos.length === 0) {
+            //house placeholder image
+            return 'https://vestnorden.com/wp-content/uploads/2018/03/house-placeholder.png'
+        }
+
+        return `https://mr0.homeflow.co.uk/${property.photos[0]}`
+    }
+
   return (
     <div className="border-2 bg-gray-50">
       <div className="relative">
-        <img src={`https://mr0.homeflow.co.uk/${property.photos[0]}`} alt={property.display_address} />
+        <img src={render_image()} alt={property.display_address} />
 
         <button className="absolute top-0 right-2" title="Click to bookmark this property">
           <FaBookmark className="text-yellow-400" size="40" />
