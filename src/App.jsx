@@ -4,6 +4,8 @@ import PropertyCard from './PropertyCard';
 
 const App = () => {
   const [properties, setProperties] = useState([]);
+
+  // this state used for searching by SearchBox
   const [term, setTerm] = useState('');
 
   // use this state to keep track of the user's saved/bookmarked properties
@@ -20,9 +22,18 @@ const App = () => {
     fetchPropertyData();
   }, []);
 
-    const match_search = properties.map(property => {
+    //mapping properties
+    const match_search = properties.map((property,i) => {
+
+      //showing results based on search term
       if(property.short_description.includes(term)) {
-        return <PropertyCard key={property.property_id} property={property}/>
+        return <PropertyCard
+            key={property.property_id}
+            id={property.property_id}
+            savedProperties={savedProperties}
+            setSavedProperties={setSavedProperties}
+            property={property}
+        />
       }
     })
 
